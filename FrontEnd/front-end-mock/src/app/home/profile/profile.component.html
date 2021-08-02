@@ -1,0 +1,58 @@
+<div class="card" style="width: 500px;margin-left: 500px;">
+  <div class="card-body">
+    <div>
+      <div class="form-group">
+        <span>Avatar</span>
+        <img src="{{profileUser.avatar}}" alt="" height="150" width="150">
+      </div>
+      <div class="form-group">
+        <span>Email : {{profileUser.email}}</span>
+      </div>
+      <div>
+        <span>User Name : {{profileUser.userName}}</span>
+      </div>
+      <div>
+        <span>First Name : {{profileUser.firstName}}</span>
+      </div>
+      <div>
+        <span>Middle Name : {{profileUser.middleName}}</span>
+      </div>
+      <div>
+        <span>Last Name : {{profileUser.lastName}}</span>
+      </div>
+      <div>
+        <span>DOB : {{this.dob}}</span>
+      </div>
+      <div>
+        <span>Staff Type : {{profileUser.staffType}}</span>
+      </div>
+      <div>
+        <span>Education : {{profileUser.education}}</span>
+      </div>
+      <div>
+        <span>Sex : {{profileUser.sex}}</span>
+      </div>
+      <div>
+        <span>School : {{profileUser.school}}</span>
+      </div>
+      <div>
+        <span>HomeTown : {{profileUser.homeTown}}</span>
+      </div>
+      <div>
+        <span>IdentityCard : {{profileUser.identityCard}}</span>
+      </div>
+      <div>
+        <span>Phone : {{profileUser.phone}}</span>
+      </div>
+      <div>
+        <span>Specialized : {{profileUser.specialized}}</span>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success btn-block float-right" (click)="editProfile()">Edit Profile</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
