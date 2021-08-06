@@ -1,5 +1,6 @@
 package com.demo.demo.repository;
 
+import com.demo.demo.message.request.UpdateUser;
 import com.demo.demo.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -20,8 +21,7 @@ public interface UserRepository extends JpaRepository <Users, Long>{
     @Query("SELECT u.emailVerified FROM Users u WHERE u.email = ?1")
     Boolean findEmailVerifiedByEmail(String email);
 
+    @Query("select p from Users p where lower(p.userName) like concat('%', :userName, '%')")
+    List<Users>search (String userName);
 
-//    Users getUsers(long id);
-//
-//    public int updateAvatar(String avatar , long id);
 }

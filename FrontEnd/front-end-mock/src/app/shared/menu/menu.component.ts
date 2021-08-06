@@ -22,10 +22,11 @@ export class MenuComponent implements OnInit {
   showUserBoard = false;
   id:any;
   userName: any;
-  profileUser:any;
+  _profileUser:any;
   public isOpened = false;
   public totalStudents = 0;
   sidenav!: MatSidenav;
+  avatar: any;
 
   constructor(
     private oauthLogin: OauthLoginService,
@@ -38,7 +39,7 @@ export class MenuComponent implements OnInit {
     this.userService.getUser(this.id)
       .subscribe(data => {
         console.log(data)
-        this.profileUser = data;
+        this._profileUser = data;
       }, error => console.log(error));
 
     this.invalidLogin = !!this.oauthLogin.getAuthToken();

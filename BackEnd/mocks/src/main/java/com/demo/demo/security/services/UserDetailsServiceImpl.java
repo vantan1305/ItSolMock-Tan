@@ -4,6 +4,7 @@ package com.demo.demo.security.services;
 import com.demo.demo.message.request.UpdateUser;
 import com.demo.demo.model.Users;
 import com.demo.demo.repository.UserRepository;
+import com.demo.demo.security.services.iservice.UsersService;
 import com.demo.demo.util.AppUtil;
 import javassist.NotFoundException;
 import org.apache.commons.io.FileUtils;
@@ -23,13 +24,16 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.security.URIParameter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService, UsersService {
 
     @Autowired
     UserRepository userRepository;
@@ -48,6 +52,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public Iterable<Users> findAll() {
         return userRepository.findAll();
     }
+
 
     @Transactional
     public Optional<Users> findById(Long id) {
@@ -135,4 +140,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userRepository.save (users1);
     }
 
+    @Override
+    public List<UpdateUser> search(HttpServletRequest request, UpdateUser updateUser){
+        return userRepository.search (updateUser.getUserName ().toLowerCase ())
+                .stream ()
+                .map (obj ->{
+                    UpdateUser updateUser1 = AppUtil.mapperEntAndDto (obj, UpdateUser.class);
+                    return updateUser1;
+                }).collect (Collectors.toList ( ));
+    }
 }

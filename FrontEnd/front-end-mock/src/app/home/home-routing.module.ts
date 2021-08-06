@@ -11,6 +11,7 @@ import { ManagerComponent } from '../shared/manager/manager.component';
 import { PmComponent } from '../shared/pm/pm.component';
 
 export const Home_Module_routes: Routes = [
+
     { path: 'profile', component: ProfileComponent , canActivate: [RouteGuardService]},
     { path: 'setting', component: SettingprofileComponent , canActivate: [RouteGuardService]}, //, canActivate: [RouteGuardService]
     { path: 'subjects', component: SubjectListComponent , canActivate: [RouteGuardService]},

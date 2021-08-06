@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Constants } from '../constants';
+import { updateUser } from '../model/updateUser';
+import { UserDTO } from '../model/userDTO';
 
 @Injectable({
   providedIn: 'root'

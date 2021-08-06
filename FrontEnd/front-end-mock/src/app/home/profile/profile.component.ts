@@ -47,10 +47,9 @@ export class ProfileComponent implements OnInit {
         console.log(data)// format dob ở đây
 
         this.dob = new Date().toLocaleDateString();
-
-        if(this.dob = this.isBirthDay){
-          this.oauthService.senMailHappyBirthDay(this.email);
-        }
+        // if(this.dob = this.isBirthDay){
+        //   this.oauthService.senMailHappyBirthDay(this.email);
+        // }
 
         this.profileUser = data;
         this.avatarSrc = this.profileUser.avatar

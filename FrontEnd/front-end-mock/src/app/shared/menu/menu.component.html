@@ -10,10 +10,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto" routerLinkActive="active" >
           <li class="nav-item active">
-              <a [routerLink]="['/home']" class="nav-link active">Home</a>
+              <a [routerLink]="['/home']" class="nav-link active" [routerLinkActive]="'active-link'">Home</a>
           </li>
           <li class="nav-item active">
-              <a [routerLink]="['subjects']" class="nav-link">Subjects</a>
+              <a [routerLink]="['/subjects']" class="nav-link" [routerLinkActive]="'active-link'">Subjects</a>
           </li>
 
           <ul class="navbar-nav" >
@@ -21,11 +21,11 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" [routerLink]="['admin']">Admin Menu</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="['pleaseLeave']">Please Leave</a>
-                    <a class="dropdown-item" [routerLink]="['issueManagement']">Issue management</a>
-                    <a class="dropdown-item" [routerLink]="['managerEmploy']">Manager Employ</a>
-                    <a class="dropdown-item" [routerLink]="['managerProject']">Manager Project</a>
-                    <a class="dropdown-item" [routerLink]="['report']">Report</a>
+                    <a class="dropdown-item" [routerLink]="['/pleaseLeave']">Please Leave</a>
+                    <a class="dropdown-item" [routerLink]="['/issueManagement']">Issue management</a>
+                    <a class="dropdown-item" [routerLink]="['/managerEmploy']">Manager Employ</a>
+                    <a class="dropdown-item" [routerLink]="['/managerProject']">Manager Project</a>
+                    <a class="dropdown-item" [routerLink]="['/report']">Report</a>
                 </div>
             </li>
           </ul>
@@ -35,11 +35,11 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" [routerLink]="['manager']">Manager Menu</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="['pleaseLeave']">Please Leave</a>
-                    <a class="dropdown-item" [routerLink]="['issueManagement']">Issue management</a>
-                    <a class="dropdown-item" [routerLink]="['managerEmploy']">Manager Employ</a>
-                    <a class="dropdown-item" [routerLink]="['managerProject']">Manager Project</a>
-                    <a class="dropdown-item" [routerLink]="['report']">Report</a>
+                    <a class="dropdown-item" [routerLink]="['/pleaseLeave']">Please Leave</a>
+                    <a class="dropdown-item" [routerLink]="['/issueManagement']">Issue management</a>
+                    <a class="dropdown-item" [routerLink]="['/managerEmploy']">Manager Employ</a>
+                    <a class="dropdown-item" [routerLink]="['/managerProject']">Manager Project</a>
+                    <a class="dropdown-item" [routerLink]="['/report']">Report</a>
                 </div>
             </li>
           </ul>
@@ -49,11 +49,11 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" [routerLink]="['pm']">Pm Menu</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="['pleaseLeave']">Please Leave</a>
-                    <a class="dropdown-item" [routerLink]="['issueManagement']">Issue management</a>
-                    <a class="dropdown-item" [routerLink]="['managerEmploy']">Manager Employ</a>
-                    <a class="dropdown-item" [routerLink]="['managerProject']">Manager Project</a>
-                    <a class="dropdown-item" [routerLink]="['report']">Report</a>
+                    <a class="dropdown-item" [routerLink]="['/pleaseLeave']">Please Leave</a>
+                    <a class="dropdown-item" [routerLink]="['/issueManagement']">Issue management</a>
+                    <a class="dropdown-item" [routerLink]="['/managerEmploy']">Manager Employ</a>
+                    <a class="dropdown-item" [routerLink]="['/managerProject']">Manager Project</a>
+                    <a class="dropdown-item" [routerLink]="['/report']">Report</a>
                 </div>
             </li>
           </ul>
@@ -63,8 +63,9 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" [routerLink]="['user']">User Menu</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" [routerLink]="['pleaseLeave']">Please Leave</a>
-                    <a class="dropdown-item" [routerLink]="['issueManagement']">Issue management</a>
+                    <a class="dropdown-item" [routerLink]="['/pleaseLeave']">Please Leave</a>
+                    <a class="dropdown-item" [routerLink]="['/issueManagement']">Issue management</a>
+                    <a class="dropdown-item" [routerLink]="['/sendEmail']">Send Email</a>
                 </div>
             </li>
           </ul>
@@ -74,12 +75,12 @@
           <li class="nav-item dropdown" >
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <img class="mr-2 rounded-circle" src="{{profileUser.avatar}}" width="30" height="30" >
+                  <img class="mr-2 rounded-circle" src="{{_profileUser.avatar}}" width="30" height="30" >
                   <span class="username" >Hello {{userName}}</span>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" [routerLink]="['profile']">Profile</a>
-                  <a class="dropdown-item" [routerLink]="['setting']">Settings</a>
+                  <a class="dropdown-item" [routerLink]="['/profile']">Profile</a>
+                  <a class="dropdown-item" [routerLink]="['/setting']">Settings</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" [routerLink]="['/logout']">Logout</a>
               </div>

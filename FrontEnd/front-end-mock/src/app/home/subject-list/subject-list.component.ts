@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SubjectListComponent implements OnInit {
   id:any;
   profileUser:any;
+  dob:any;
 
   constructor(
     private userService: UserService,
@@ -23,6 +24,8 @@ export class SubjectListComponent implements OnInit {
     this.userService.getUser(this.id)
       .subscribe(data => {
         console.log(data)// format dob ở đây
+        this.dob = new Date().toLocaleDateString();
+
         this.profileUser = data;
       }, error => console.log(error));
   }

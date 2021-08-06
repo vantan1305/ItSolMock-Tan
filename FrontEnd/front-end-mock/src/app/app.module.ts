@@ -33,6 +33,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatInputModule } from '@angular/material/input';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { MatInputModule } from '@angular/material/input';
     SocialLoginComponent,
     ExternalUrlDirective,
     NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,

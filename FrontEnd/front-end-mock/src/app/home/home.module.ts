@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatInputModule } from '@angular/material/input';
 import { PleaseLeaveComponent } from './please-leave/please-leave.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PleaseLeaveComponent } from './please-leave/please-leave.component';
     MatSidenavModule,
     MatListModule,
     MatButtonModule,
+    NgxPaginationModule,
   ],
   providers:[
     UserService

@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -43,9 +44,8 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity findAll(){
-        return ResponseEntity.ok().body(userDetailsService.loadAll ());
+        return ResponseEntity.ok().body(userDetailsService.findAll ());
     }
-
 
     @GetMapping("/getId/{id}")
     public ResponseEntity getUserById(@PathVariable Long id){
@@ -108,6 +108,12 @@ public class UserController {
         System.out.println("Get all Users Images...");
         Users Users   = userDetailsService.findById(id).get ();
         return Files.readAllBytes(Paths.get(context.getRealPath("/ImgUsers/")+Users.getAvatar ()));
+    }
+
+
+    @GetMapping("/search")
+    public ResponseEntity search(HttpServletRequest request, UpdateUser updateUser){
+        return  ResponseEntity.ok ().body (userDetailsService.search (request, updateUser));
     }
 
 }

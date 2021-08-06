@@ -11,6 +11,8 @@ import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { ManagerComponent } from './manager/manager.component';
 import { PmComponent } from './pm/pm.component';
+import { MatButtonModule, MatCardModule, MatChipsModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatListModule, MatProgressSpinnerModule, MatToolbarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -24,19 +26,41 @@ import { PmComponent } from './pm/pm.component';
     UserComponent,
     ManagerComponent,
     PmComponent,
-
   ],
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    NgSpinnerModule
+    NgSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    BrowserAnimationsModule,
   ],
   exports: [
     MenuComponent,
     PopupModalComponent,
     VerifyLinkModalComponent,
-    LoaderComponent
-  ]
+    LoaderComponent,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
+    MatListModule
+  ],
 })
 export class SharedModule { }
