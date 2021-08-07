@@ -19,6 +19,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatInputModule } from '@angular/material/input';
 import { PleaseLeaveComponent } from './please-leave/please-leave.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AdminProjectComponent } from './admin-project/admin-project.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SubjectListComponent,
     SettingprofileComponent,
     PleaseLeaveComponent,
-    PleaseLeaveComponent
+    PleaseLeaveComponent,
+    AdminProjectComponent
   ],
   imports: [
     CommonModule,

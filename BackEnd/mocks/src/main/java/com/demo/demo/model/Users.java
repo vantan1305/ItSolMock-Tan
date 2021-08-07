@@ -75,6 +75,9 @@ public class Users {
     @Column(name = "sex", nullable = true)
     private String sex;
 
+    @Column(name = "day_off_last_year")
+    private Integer dayOffLastYear;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -84,6 +87,9 @@ public class Users {
     @OneToMany(mappedBy = "users")
     private Set<Timelog> timelogs;
 
+    @OneToMany(mappedBy = "users")
+    private Collection<ProjectUser> projectUsersList;
+
     public Users() {
     }
 
@@ -91,6 +97,14 @@ public class Users {
         this.userName = userName;
         this.email = email;
         this.password = password;
+    }
+
+    public Integer getDayOffLastYear() {
+        return dayOffLastYear;
+    }
+
+    public void setDayOffLastYear(Integer dayOffLastYear) {
+        this.dayOffLastYear = dayOffLastYear;
     }
 
     public Date getDob() {
@@ -263,5 +277,11 @@ public class Users {
         this.timelogs = timelogs;
     }
 
+    public Collection<ProjectUser> getProjectUsersList() {
+        return projectUsersList;
+    }
 
+    public void setProjectUsersList(Collection<ProjectUser> projectUsersList) {
+        this.projectUsersList = projectUsersList;
+    }
 }

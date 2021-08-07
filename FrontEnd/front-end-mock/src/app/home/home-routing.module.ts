@@ -9,6 +9,7 @@ import { SettingprofileComponent } from './settingprofile/settingprofile.compone
 import { PleaseLeaveComponent } from './please-leave/please-leave.component';
 import { ManagerComponent } from '../shared/manager/manager.component';
 import { PmComponent } from '../shared/pm/pm.component';
+import { AdminProjectComponent } from './admin-project/admin-project.component';
 
 export const Home_Module_routes: Routes = [
 
@@ -19,6 +20,7 @@ export const Home_Module_routes: Routes = [
     {path:'pleaseLeave', component:PleaseLeaveComponent,canActivate:[RouteGuardService]},
     {path:'manager', component:ManagerComponent,canActivate:[RouteGuardService]},
     {path:'pm', component:PmComponent,canActivate:[RouteGuardService]},
+    {path:'managerProject', component:AdminProjectComponent,canActivate:[RouteGuardService]},
 ]
 
 @NgModule({

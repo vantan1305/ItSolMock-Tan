@@ -1,10 +1,9 @@
 package com.demo.demo.model;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Entity
 @Table(name = "project")
@@ -22,7 +21,7 @@ public class Project {
     private String description;
 
     @Column(name = "status", nullable = true)
-    private Integer status;
+    private String status;
 
     @Column(name = "timestart", nullable = true)
     private Date timeStart;
@@ -30,13 +29,23 @@ public class Project {
     @Column(name = "timeend", nullable = true)
     private Date timeEnd;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_project",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id"))
-    private Set<Users> users = new HashSet<> ();
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "user_project",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "project_id"))
+//    private Set<Users> users = new HashSet<> ();
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    private Collection<ProjectUser> projectUserList;
 
     public Project() {
+    }
+
+    public Collection<ProjectUser> getProjectUserList() {
+        return projectUserList;
+    }
+
+    public void setProjectUserList(Collection<ProjectUser> projectUserList) {
+        this.projectUserList = projectUserList;
     }
 
     public Long getId() {
@@ -63,11 +72,11 @@ public class Project {
         this.description = description;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -87,11 +96,4 @@ public class Project {
         this.timeEnd = timeEnd;
     }
 
-    public Set<Users> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<Users> users) {
-        this.users = users;
-    }
 }
