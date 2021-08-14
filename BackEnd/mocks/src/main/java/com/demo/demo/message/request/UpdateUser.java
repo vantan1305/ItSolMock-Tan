@@ -2,6 +2,8 @@ package com.demo.demo.message.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,9 +26,6 @@ public class UpdateUser {
     private String userName;
     private Date dob;
     private String sex;
-
-
-
 
 
     public String getUserName() {
@@ -164,8 +163,6 @@ public class UpdateUser {
     public void setEmail(String email) {
         this.email = email;
     }
-
-
 
     public UpdateUser() {
     }

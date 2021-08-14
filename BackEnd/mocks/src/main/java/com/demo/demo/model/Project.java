@@ -14,6 +14,9 @@ public class Project {
     @Column(name = "id")
     private Long id;
 
+    @Column(name = "unit")
+    private String unit;
+
     @Column(name = "name", nullable = true)
     private String name;
 
@@ -23,21 +26,48 @@ public class Project {
     @Column(name = "status", nullable = true)
     private String status;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "timestart", nullable = true)
     private Date timeStart;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "timeend", nullable = true)
     private Date timeEnd;
 
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "user_project",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "project_id"))
-//    private Set<Users> users = new HashSet<> ();
+    private Boolean deleteFlag;
+
+
     @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
     private Collection<ProjectUser> projectUserList;
 
+    public Project(Long id, String unit, String name, String description, String status, Date timeStart, Date timeEnd, Boolean deleteFlag) {
+        this.id = id;
+        this.unit = unit;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Boolean getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
     public Project() {
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public Collection<ProjectUser> getProjectUserList() {

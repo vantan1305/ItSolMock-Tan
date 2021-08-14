@@ -17,6 +17,8 @@ export class AdminProjectComponent implements OnInit {
   id;
   seachFrom: SeachForm = new SeachForm();
   p = 1;
+  deleteId: number;
+  deleteName: string;
 
   constructor(
     private http: HttpClient,
@@ -27,20 +29,16 @@ export class AdminProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.id)
-
     this.projectService.getAllProject()
       .subscribe(data => {
         console.log(data)
         this.updateProject = data;
       }, error => console.log(error));
-
-
   }
 
   public updateNewProject(){
     const formData = new FormData;
-
+    formData.append('unit', this.updateProject.unit);
     formData.append('name', this.updateProject.name);
     formData.append('description', this.updateProject.description);
     formData.append('status',  this.updateProject.status);
@@ -50,8 +48,8 @@ export class AdminProjectComponent implements OnInit {
     this.projectService.updateProject(formData).subscribe(
       data =>{
         console.log(data);
-        alert('ok');
         this.updateProject = data;
+        alert('ok');
         this.router.navigate(['managerProject']);
       }, (error: any) => {
         alert('Thất bại');
@@ -74,12 +72,6 @@ export class AdminProjectComponent implements OnInit {
     );
   }
 
-  public EditProject(){
-
-  }
-
-  public DeleteProject(){}
-
   public sortCode(dir:any){
     if(dir === 'up' ){
       this.updateProject = _.orderBy(this.updateProject,['name'],['asc']);
@@ -87,6 +79,10 @@ export class AdminProjectComponent implements OnInit {
     else{
       this.updateProject = _.orderBy(this.updateProject,['name'],['desc']);
     }
+  }
+
+  deleteSuccess(){
+    this.ngOnInit();
   }
 
 }

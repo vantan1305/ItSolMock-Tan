@@ -69,6 +69,7 @@ public class Users {
     @Column(nullable = false)
     private Boolean emailVerified = false;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "dob", nullable = true)
     private Date dob;
 

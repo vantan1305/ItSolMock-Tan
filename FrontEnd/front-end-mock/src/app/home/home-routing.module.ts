@@ -10,6 +10,8 @@ import { PleaseLeaveComponent } from './please-leave/please-leave.component';
 import { ManagerComponent } from '../shared/manager/manager.component';
 import { PmComponent } from '../shared/pm/pm.component';
 import { AdminProjectComponent } from './admin-project/admin-project.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
+import { DeleteProjectComponent } from './delete-project/delete-project.component';
 
 export const Home_Module_routes: Routes = [
 
@@ -21,6 +23,8 @@ export const Home_Module_routes: Routes = [
     {path:'manager', component:ManagerComponent,canActivate:[RouteGuardService]},
     {path:'pm', component:PmComponent,canActivate:[RouteGuardService]},
     {path:'managerProject', component:AdminProjectComponent,canActivate:[RouteGuardService]},
+    {path:'managerProject/edit', children: [ {path: ':id', component: EditProjectComponent}],canActivate:[RouteGuardService]},
+    {path:'managerProject/deleteProject', component:DeleteProjectComponent,canActivate:[RouteGuardService]},
 ]
 
 @NgModule({

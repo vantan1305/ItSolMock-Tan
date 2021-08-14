@@ -6,12 +6,16 @@
   <div class="card-body">
     <div>
       <div class="form-group">
-        <label for="name">Tên đơn vị</label>
+        <label for="unit">Tên đơn vị</label>
+        <input class="form-control" type="text" id="unit" placeholder="Unit" required [(ngModel)]="updateProject.unit" name="unit">
+      </div>
+      <div class="form-group">
+        <label for="name">Tên project</label>
         <input class="form-control" type="text" id="name" placeholder="Name" required [(ngModel)]="updateProject.name" name="name">
       </div>
       <div class="form-group">
         <label for="description">Mô tả dự án</label>
-        <input class="form-control" type="text" id="description" placeholder="Description" required [(ngModel)]="updateProject.description" name="description">
+        <textarea class="form-control" type="text" id="description" placeholder="Description" required [(ngModel)]="updateProject.description" name="description" cols="30" rows="10"></textarea>
       </div>
       <div class="form-group">
         <label for="status">Status</label>
@@ -35,7 +39,7 @@
 </div>
 
 
-<div class="card" style="width: 1030px;margin-left: 500px;margin-top: -526px;">
+<div class="card" style="width: 1030px;margin-left: 500px;margin-top: -828px;">
   <h2 style="text-align: center;">Project List</h2>
 <div class="col-6 col-md-6" style="margin-left: 350px;">
   <div class="search" >
@@ -62,6 +66,7 @@
       &nbsp;
       <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
     </th>
+    <th>Unit</th>
     <th>Description</th>
     <th>Status</th>
     <th style="width: 50px;">Time Start</th>
@@ -71,21 +76,34 @@
   <tr *ngFor="let project of updateProject| paginate: { itemsPerPage: 5, currentPage: p }">
     <td>{{project?.id}}</td>
     <td>{{project?.name}}</td>
+    <td>{{project?.unit}}</td>
     <td>{{project?.description}}</td>
     <td>{{project?.status}}</td>
     <td>{{project?.timeStart}}</td>
     <td>{{project?.timeEnd}}</td>
-    <td>
-      <mat-icon style="cursor: pointer;" title="Click to delete data" (click)="DeleteProject(project?.id)">
-        delete
-      </mat-icon>
-      <mat-icon style="cursor: pointer;" title="Click to edit data" (click)="EditProject(project?.id)">
-        edit
-      </mat-icon>
+    <td class="text-center">
+      <button class="btn btn-success" [routerLink]="['/managerProject/edit', project.id]"><i
+        class="fa fa-edit"></i></button>
+      <button class="btn btn-danger ml-2" data-toggle="modal" data-target="#exampleModal"
+              (click)="deleteId = project.id; deleteName = project.name"><i class="fa fa-trash"></i>
+      </button>
     </td>
+  </tr>
+
 </table>
 
 <div class="col-md-12" style="padding-top: 20px;text-align: center;">
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-delete-project [deleteId]="deleteId" [deleteName]="deleteName" (deleteComplete)="deleteSuccess()"></app-delete-project>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>

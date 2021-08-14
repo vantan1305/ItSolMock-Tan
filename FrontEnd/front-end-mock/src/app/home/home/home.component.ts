@@ -41,19 +41,19 @@ export class HomeComponent implements OnInit {
         console.log(data)// format dob ở đây
 
         // this.dob = new Date().toLocaleString();
-        this.dob = new Date();
-        this.dd = this.dob.getDate();
-        this.mm = this.dob.getMonth()+1;
-        this.yyyy = this.dob.getFullYear();
-        if(this.dd<10)
-          {
-           this.dd='0'+ this.dd;
-        }
-        if(this.mm<10)
-          {
-            this.mm='0'+ this.mm;
-        }
-        this.dob = this.dd+'/'+this.mm+'/'+this.yyyy;
+        // this.dob = new Date();
+        // this.dd = this.dob.getDate();
+        // this.mm = this.dob.getMonth()+1;
+        // this.yyyy = this.dob.getFullYear();
+        // if(this.dd<10)
+        //   {
+        //    this.dd='0'+ this.dd;
+        // }
+        // if(this.mm<10)
+        //   {
+        //     this.mm='0'+ this.mm;
+        // }
+        // this.dob = this.dd+'/'+this.mm+'/'+this.yyyy;
         if(this.invalidLogin){
           const user = this.oauthService.getUsers();
           this.roles = user.roles;

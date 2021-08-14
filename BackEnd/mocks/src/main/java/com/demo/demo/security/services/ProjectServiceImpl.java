@@ -32,19 +32,18 @@ public class ProjectServiceImpl implements ProjectService {
         if (updateProject != null){
             if(AppUtil.NVL(updateProject.getId())==0L){
                 project = AppUtil.mapperEntAndDto(updateProject, Project.class);
-//                Users users = AppUtil.NVL(updateProject.getUserId ()) == 0L ? null :
-//                        userDetailsService.findById(updateProject.getUserId ()).orElse(null);
             }
             //  update
             else {
                 project = projectRepository.findById(updateProject.getId()).orElse(null);
                 if (project != null){
-                    Project project1 = AppUtil.mapperEntAndDto (updateProject, Project.class);
-                    project1.setName (updateProject.getName ());
-                    project1.setDescription (updateProject.getDescription ());
-                    project1.setStatus (updateProject.getStatus ());
-                    project1.setTimeEnd (updateProject.getTimeEnd ());
-                    project1.setTimeStart (updateProject.getTimeStart ());
+//                    Project project1 = AppUtil.mapperEntAndDto (updateProject, Project.class);
+                    project.setUnit (updateProject.getUnit ());
+                    project.setName (updateProject.getName ());
+                    project.setDescription (updateProject.getDescription ());
+                    project.setStatus (updateProject.getStatus ());
+                    project.setTimeEnd (updateProject.getTimeEnd ());
+                    project.setTimeStart (updateProject.getTimeStart ());
                 }
             }
             return  AppUtil.mapperEntAndDto(projectRepository.save(project), UpdateProject.class);
@@ -71,5 +70,22 @@ public class ProjectServiceImpl implements ProjectService {
                     UpdateProject updateProject1 = AppUtil.mapperEntAndDto (obj, UpdateProject.class);
                     return updateProject1;
                 }).collect (Collectors.toList ( ));
+    }
+
+
+//    @Override
+//    public void editProject(Project project) {
+//        this.projectRepository.editProject(project.getDescription (), project.getName (), project.getStatus (),
+//                project.getTimeEnd (), project.getTimeStart (), project.getUnit (), project.getId ());
+//    }
+
+    @Override
+    public Boolean delete(HttpServletRequest request, Long id) {
+        Project project = projectRepository.findById (id).orElse (null);
+        if(project != null){
+            projectRepository.delete (project);
+            return true;
+        }
+        return false;
     }
 }

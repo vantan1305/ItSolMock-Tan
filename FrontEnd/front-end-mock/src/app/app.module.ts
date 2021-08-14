@@ -44,7 +44,6 @@ import { MatInputModule } from '@angular/material/input';
     SocialLoginComponent,
     ExternalUrlDirective,
     NotFoundComponent,
-
   ],
   imports: [
     BrowserModule,
