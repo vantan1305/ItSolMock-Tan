@@ -9,14 +9,33 @@ import java.util.List;
 
 public class UpdateProject {
     private Long id;
+    private String unit;
     private String name;
     private String description;
     private String status;
     private Date timeStart;
     private Date timeEnd;
     private List<Users> usersList;
+    private Boolean deleteFlag;
 
     public UpdateProject() {
+    }
+
+
+    public Boolean getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public List<Users> getUsersList() {

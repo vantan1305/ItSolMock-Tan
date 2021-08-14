@@ -20,6 +20,8 @@ import { MatInputModule } from '@angular/material/input';
 import { PleaseLeaveComponent } from './please-leave/please-leave.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminProjectComponent } from './admin-project/admin-project.component';
+import { EditProjectComponent } from './edit-project/edit-project.component';
+import { DeleteProjectComponent } from './delete-project/delete-project.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,10 @@ import { AdminProjectComponent } from './admin-project/admin-project.component';
     SettingprofileComponent,
     PleaseLeaveComponent,
     PleaseLeaveComponent,
-    AdminProjectComponent
+    AdminProjectComponent,
+    EditProjectComponent,
+    DeleteProjectComponent,
+
   ],
   imports: [
     CommonModule,
@@ -47,6 +52,7 @@ import { AdminProjectComponent } from './admin-project/admin-project.component';
     MatListModule,
     MatButtonModule,
     NgxPaginationModule,
+
   ],
   providers:[
     UserService

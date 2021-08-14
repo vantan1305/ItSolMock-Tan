@@ -5,9 +5,13 @@ import com.demo.demo.model.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Service
@@ -15,7 +19,7 @@ public class EmailSenderService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    private static String dateFormat="dd-MM";
+    private static String dateFormat="dd/MM/YYYY";
 
     public void sendMail(String userEmail, String confirmationToken){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
@@ -44,6 +48,7 @@ public class EmailSenderService {
     }
 
     public boolean isItBirthday(Users users) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern ("dd/MM/YYYY");
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         Date today = new Date();
         Date birthDay = users.getDob ();
@@ -54,6 +59,8 @@ public class EmailSenderService {
         return (formatter.format(today).equals(formatter.format(birthDay)));
     }
 
+
+    @Scheduled(cron = "0 00 9 * * ?")
     public void sendMailHappyBirthDay(String userEmail){
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(userEmail);

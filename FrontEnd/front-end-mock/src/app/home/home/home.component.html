@@ -36,7 +36,7 @@
     <th>IdentityCard</th>
     <th>Phone</th>
     <th>Specialized</th>
-    <!-- <th>Dob</th> -->
+    <th>Dob</th>
     <th>Avatar</th>
     <!-- <div *ngIf="showManagerBoard"></div> -->
     <!-- <th *ngIf="showManagerBoard" value="Acction">Acction</th> -->
@@ -52,7 +52,7 @@
     <td>{{user?.identityCard}}</td>
     <td>{{user?.phone}}</td>
     <td>{{user?.specialized}}</td>
-    <!-- <td>{{this.dob}}</td> -->
+    <td>{{user?.dob}}</td>
     <!-- <td *ngIf="user?.dob">{{this.dob}}</td> -->
     <td align="center"><img *ngIf="user?.avatar" src="{{user?.avatar}}" height="50px;"/></td>
 

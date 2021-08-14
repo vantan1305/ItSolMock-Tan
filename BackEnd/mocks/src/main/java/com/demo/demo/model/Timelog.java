@@ -13,6 +13,7 @@ public class Timelog {
     @Column(name = "id")
     private Long id;
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "time", nullable = true)
     private Date time;
 

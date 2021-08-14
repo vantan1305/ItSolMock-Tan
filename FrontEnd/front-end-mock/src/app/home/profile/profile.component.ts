@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit {
   }
 
   public editProfile() {
-    this.router.navigate(['home/setting']);
+    this.router.navigate(['setting']);
   }
 
 }

@@ -21,6 +21,7 @@ import com.demo.demo.security.services.UserPrinciple;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -183,7 +184,7 @@ public class AuthRestAPIs {
         }
     }
 
-    @PostMapping("/send-email-to-birthday")
+    @Scheduled(cron = "0 00 9 * * ?")
     public ResponseEntity<?> sendEmailHappyBirthDay(@Valid @RequestBody
                                                           VerifyEmailRequest emailRequest) {
         if(authService.existsByEmail(emailRequest.getEmail())){
@@ -196,7 +197,7 @@ public class AuthRestAPIs {
                 return ResponseEntity.ok(new ApiResponse (true, "Happy Birth Day To You"));
             }
         } else {
-            throw new BadRequestException("Happy Birth Day To You");
+            throw new BadRequestException("OK");
         }
     }
 

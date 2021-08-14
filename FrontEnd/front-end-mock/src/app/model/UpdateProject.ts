@@ -1,5 +1,6 @@
 export class UpdateProject{
     id;
+    unit;
     name;
     description;
     status;
