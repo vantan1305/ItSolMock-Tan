@@ -49,8 +49,11 @@ public class ProjectServiceImpl implements ProjectService {
         if (updateProject != null){
             if(AppUtil.NVL(updateProject.getId())==0L){
                 project = AppUtil.mapperEntAndDto(updateProject, Project.class);
+<<<<<<< HEAD
 //                project.setDepartment (departmentRepository.findById (updateProject.getDepartmentId ()).orElse (null));
 //                project.setUsers (userRepository.findById (updateProject.getUserId ()).orElse (null));
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
             }
             //  update
             else {
@@ -63,8 +66,11 @@ public class ProjectServiceImpl implements ProjectService {
                     project.setStatus (updateProject.getStatus ());
                     project.setTimeEnd (updateProject.getTimeEnd ());
                     project.setTimeStart (updateProject.getTimeStart ());
+<<<<<<< HEAD
 //                    project.setDepartment (departmentRepository.findById (updateProject.getDepartmentId ()).orElse (null));
 //                    project.setUsers (userRepository.findById (updateProject.getUserId ()).orElse (null));
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
                 }
             }
             return  AppUtil.mapperEntAndDto(projectRepository.save(project), UpdateProject.class);
@@ -109,6 +115,7 @@ public class ProjectServiceImpl implements ProjectService {
         }
         return false;
     }
+<<<<<<< HEAD
 //new
     @Override
     public Project addProjectToUser(long user_id, long project_id) {
@@ -171,4 +178,6 @@ public class ProjectServiceImpl implements ProjectService {
         }
 
     }
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 }

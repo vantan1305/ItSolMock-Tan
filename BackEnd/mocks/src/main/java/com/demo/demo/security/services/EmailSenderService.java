@@ -20,7 +20,10 @@ public class EmailSenderService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
     private static String dateFormat="dd/MM/YYYY";
 
     public void sendMail(String userEmail, String confirmationToken){
@@ -50,6 +53,7 @@ public class EmailSenderService {
     }
 
     public boolean isItBirthday(Users users) {
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern ("dd/MM/YYYY");
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         Date today = new Date();
         Date birthDay = users.getDob ();
@@ -61,6 +65,7 @@ public class EmailSenderService {
     }
 
 
+<<<<<<< HEAD
 //    @Scheduled(cron = "0 0 6 * * ?")
 //    public void sendMailHappyBirthDay(Users users,String userEmail){
 //        if (isItBirthday (users)){
@@ -76,4 +81,16 @@ public class EmailSenderService {
 //
 //    }
 
+=======
+    @Scheduled(cron = "0 00 9 * * ?")
+    public void sendMailHappyBirthDay(String userEmail){
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(userEmail);
+        mailMessage.setSubject("Account Activation!");
+        mailMessage.setText("A wish for you on your birthday, whatever you ask you may receive, " +
+                "whatever you seek you may find, whatever you wish may be fulfilled on your birthday. " +
+                "Happy birthday to you! ");
+        javaMailSender.send(mailMessage);
+    }
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 }

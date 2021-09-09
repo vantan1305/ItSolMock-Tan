@@ -20,6 +20,7 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     @Query("select p from Project p where lower(p.name) like concat('%', :name, '%')")
     List<Project>search (String name);
 
+<<<<<<< HEAD
     @Query("select p from Project  p where p.deleteFlag = :isdelete")
     List<Project> findByDeleteFlag(Boolean isdelete);
 
@@ -27,4 +28,6 @@ public interface ProjectRepository extends JpaRepository<Project, Long> {
     @Query(value = "update Project set deleteFlag = 0 where id =:id", nativeQuery = true)
     UpdateProject isDeleteById(long id);
 
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 }

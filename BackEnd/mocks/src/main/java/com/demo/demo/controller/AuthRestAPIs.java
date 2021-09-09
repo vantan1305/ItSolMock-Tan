@@ -184,6 +184,7 @@ public class AuthRestAPIs {
         }
     }
 
+<<<<<<< HEAD
 //    @Scheduled(cron = "0 00 9 * * ?")
 //    public ResponseEntity<?> sendEmailHappyBirthDay(@Valid @RequestBody
 //                                                          VerifyEmailRequest emailRequest) {
@@ -200,6 +201,24 @@ public class AuthRestAPIs {
 //            throw new BadRequestException("OK");
 //        }
 //    }
+=======
+    @Scheduled(cron = "0 00 9 * * ?")
+    public ResponseEntity<?> sendEmailHappyBirthDay(@Valid @RequestBody
+                                                          VerifyEmailRequest emailRequest) {
+        if(authService.existsByEmail(emailRequest.getEmail())){
+            if(userDetailsService.isAccountVerified(emailRequest.getEmail())){
+                throw new BadRequestException("Email is already verified");
+            } else {
+                Users users = authService.findByEmail(emailRequest.getEmail());
+                emailSenderService.isItBirthday (users);
+                emailSenderService.sendMailHappyBirthDay (users.getEmail());
+                return ResponseEntity.ok(new ApiResponse (true, "Happy Birth Day To You"));
+            }
+        } else {
+            throw new BadRequestException("OK");
+        }
+    }
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 
     @PostMapping("/reset-password")
     public ResponseEntity<?> resetPassword(@Valid @RequestBody LoginForm loginForm) {

@@ -19,8 +19,11 @@ export class AdminProjectComponent implements OnInit {
   p = 1;
   deleteId: number;
   deleteName: string;
+<<<<<<< HEAD
   public users:any;
   userSelect:any;
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 
   constructor(
     private http: HttpClient,
@@ -31,12 +34,16 @@ export class AdminProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+<<<<<<< HEAD
     this.loadUser();
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
     this.projectService.getAllProject()
       .subscribe(data => {
         console.log(data)
         this.updateProject = data;
       }, error => console.log(error));
+<<<<<<< HEAD
   }
 
   loadUser(){
@@ -45,11 +52,16 @@ export class AdminProjectComponent implements OnInit {
         this.users= data;
       }
     )
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
   }
 
   public updateNewProject(){
     const formData = new FormData;
+<<<<<<< HEAD
     // formData.append('user', this.userSelect);
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
     formData.append('unit', this.updateProject.unit);
     formData.append('name', this.updateProject.name);
     formData.append('description', this.updateProject.description);
@@ -62,7 +74,11 @@ export class AdminProjectComponent implements OnInit {
         console.log(data);
         this.updateProject = data;
         alert('ok');
+<<<<<<< HEAD
         this.router.navigate(['/managerProject/list']);
+=======
+        this.router.navigate(['managerProject']);
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
       }, (error: any) => {
         alert('Thất bại');
         console.log(error);

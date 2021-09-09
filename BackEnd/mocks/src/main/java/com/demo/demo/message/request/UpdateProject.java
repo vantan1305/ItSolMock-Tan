@@ -17,14 +17,18 @@ public class UpdateProject {
     private Date timeEnd;
     private List<Users> usersList;
     private Boolean deleteFlag;
+<<<<<<< HEAD
     private Long departmentId;
     private List<Issue> issueList;
     private Department department;
     private Long userId;
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 
     public UpdateProject() {
     }
 
+<<<<<<< HEAD
     public Long getUserId() {
         return userId;
     }
@@ -56,6 +60,8 @@ public class UpdateProject {
     public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
     }
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 
     public Boolean getDeleteFlag() {
         return deleteFlag;

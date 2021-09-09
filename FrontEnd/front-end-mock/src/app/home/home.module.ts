@@ -22,6 +22,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminProjectComponent } from './admin-project/admin-project.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { DeleteProjectComponent } from './delete-project/delete-project.component';
+<<<<<<< HEAD
 import { ProjectListComponent } from './project-list/project-list.component';
 import { AddDepartmentComponent } from './add-department/add-department.component';
 import { MatDialogModule, MatProgressBarModule, MatRadioModule, MAT_DIALOG_DATA } from '@angular/material';
@@ -36,6 +37,9 @@ import { DeleteUserComponent } from './delete-user/delete-user.component';
 import {MatSelectModule} from '@angular/material/select';
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
+=======
+
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 @NgModule({
   declarations: [
     ProfileComponent,
@@ -43,6 +47,7 @@ import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component
     SubjectListComponent,
     SettingprofileComponent,
     PleaseLeaveComponent,
+<<<<<<< HEAD
     AdminProjectComponent,
     EditProjectComponent,
     DeleteProjectComponent,
@@ -58,6 +63,12 @@ import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component
     DeleteUserComponent,
     AdminEditUserComponent,
     AdminAddUserComponent,
+=======
+    PleaseLeaveComponent,
+    AdminProjectComponent,
+    EditProjectComponent,
+    DeleteProjectComponent,
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 
   ],
   imports: [
@@ -76,10 +87,14 @@ import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component
     MatListModule,
     MatButtonModule,
     NgxPaginationModule,
+<<<<<<< HEAD
     MatProgressBarModule,
     MatRadioModule,
     MatDialogModule,
     MatSelectModule
+=======
+
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
   ],
   providers:[
     UserService

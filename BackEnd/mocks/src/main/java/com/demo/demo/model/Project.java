@@ -36,6 +36,7 @@ public class Project {
     @Column(name = "timeend", nullable = true)
     private Date timeEnd;
 
+<<<<<<< HEAD
     @Enumerated(EnumType.STRING)
     private Process process;
 
@@ -91,12 +92,49 @@ public class Project {
     public void setDeleteFlag(Boolean deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
+=======
+    private Boolean deleteFlag;
+
+
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    private Collection<ProjectUser> projectUserList;
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
+
+    public Project(Long id, String unit, String name, String description, String status, Date timeStart, Date timeEnd, Boolean deleteFlag) {
+        this.id = id;
+        this.unit = unit;
+        this.name = name;
+        this.description = description;
+        this.status = status;
+        this.timeStart = timeStart;
+        this.timeEnd = timeEnd;
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Boolean getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Boolean deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 
     public Project() {
     }
 
     public String getUnit() {
         return unit;
+<<<<<<< HEAD
+=======
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public Collection<ProjectUser> getProjectUserList() {
+        return projectUserList;
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
     }
 
     public void setUnit(String unit) {

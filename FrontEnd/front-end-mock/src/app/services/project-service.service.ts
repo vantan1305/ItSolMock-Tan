@@ -42,6 +42,7 @@ export class ProjectServiceService {
   }
 
   public deleteProject(id:any):Observable<any>{
+<<<<<<< HEAD
     return this.http.post(Constants.API_BASE_URL + '/project/isdelete/' + id, this.httpOptions);
   }
 
@@ -51,6 +52,9 @@ export class ProjectServiceService {
 
   public getUser(): Observable<any>{
     return this.http.get(Constants.API_BASE_URL + '/project/allUser');
+=======
+    return this.http.delete(Constants.API_BASE_URL + '/project/delete/' + id, this.httpOptions);
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
   }
 
 }

@@ -12,6 +12,7 @@ import { PmComponent } from '../shared/pm/pm.component';
 import { AdminProjectComponent } from './admin-project/admin-project.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { DeleteProjectComponent } from './delete-project/delete-project.component';
+<<<<<<< HEAD
 import { ProjectListComponent } from './project-list/project-list.component';
 import { AddDepartmentComponent } from './add-department/add-department.component';
 import { AddProjectToDepartmentComponent } from './add-project-to-department/add-project-to-department.component';
@@ -24,6 +25,8 @@ import { ManagerUserComponent } from './manager-user/manager-user.component';
 import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
 import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
 
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 
 export const Home_Module_routes: Routes = [
 
@@ -37,6 +40,7 @@ export const Home_Module_routes: Routes = [
     {path:'managerProject', component:AdminProjectComponent,canActivate:[RouteGuardService]},
     {path:'managerProject/edit', children: [ {path: ':id', component: EditProjectComponent}],canActivate:[RouteGuardService]},
     {path:'managerProject/deleteProject', component:DeleteProjectComponent,canActivate:[RouteGuardService]},
+<<<<<<< HEAD
     {path:'managerProject/list', component:ProjectListComponent,canActivate:[RouteGuardService]},
     {path:'listDepartment', component:ListDepartmentComponent,canActivate:[RouteGuardService]},
     {path:'listProject', component:ProjectListComponent,canActivate:[RouteGuardService]},
@@ -48,6 +52,8 @@ export const Home_Module_routes: Routes = [
     {path:'pleaseLeave', component:PleaseLeaveComponent,canActivate:[RouteGuardService]},
     {path:'managerUser/edit', children: [ {path: ':id', component: AdminEditUserComponent}],canActivate:[RouteGuardService]},
     {path:'adminAddUser', component:AdminAddUserComponent,canActivate:[RouteGuardService]},
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 ]
 
 @NgModule({

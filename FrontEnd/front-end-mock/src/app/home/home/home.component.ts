@@ -41,7 +41,26 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserBoard()
       .subscribe((data) => {
+<<<<<<< HEAD
         console.log(data)
+=======
+        console.log(data)// format dob ở đây
+
+        // this.dob = new Date().toLocaleString();
+        // this.dob = new Date();
+        // this.dd = this.dob.getDate();
+        // this.mm = this.dob.getMonth()+1;
+        // this.yyyy = this.dob.getFullYear();
+        // if(this.dd<10)
+        //   {
+        //    this.dd='0'+ this.dd;
+        // }
+        // if(this.mm<10)
+        //   {
+        //     this.mm='0'+ this.mm;
+        // }
+        // this.dob = this.dd+'/'+this.mm+'/'+this.yyyy;
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
         if(this.invalidLogin){
           const user = this.oauthService.getUsers();
           this.roles = user.roles;

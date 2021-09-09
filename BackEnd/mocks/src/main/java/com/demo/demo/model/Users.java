@@ -68,8 +68,12 @@ public class Users {
     @Column(nullable = false)
     private Boolean emailVerified = false;
 
+<<<<<<< HEAD
 //    @Temporal(TemporalType.DATE)
     @JsonFormat(pattern="yyyy-MM-dd")
+=======
+    @Temporal(TemporalType.DATE)
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
     @Column(name = "dob", nullable = true)
     private Date dob;
 

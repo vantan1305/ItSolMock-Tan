@@ -45,7 +45,6 @@ import { MatProgressBarModule } from '@angular/material';
     SocialLoginComponent,
     ExternalUrlDirective,
     NotFoundComponent,
-
   ],
   imports: [
     BrowserModule,

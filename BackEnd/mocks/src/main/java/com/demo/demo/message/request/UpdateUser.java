@@ -33,6 +33,7 @@ public class UpdateUser {
         return deleteUser;
     }
 
+<<<<<<< HEAD
     public String getUnit() {
         return unit;
     }
@@ -45,6 +46,8 @@ public class UpdateUser {
         this.deleteUser = deleteUser;
     }
 
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
     public String getUserName() {
         return userName;
     }

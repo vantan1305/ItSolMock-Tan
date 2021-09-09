@@ -1,7 +1,10 @@
 package com.demo.demo.controller;
 
 import com.demo.demo.message.request.UpdateProject;
+<<<<<<< HEAD
 import com.demo.demo.message.response.DeleteReponse;
+=======
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
 import com.demo.demo.model.Project;
 import com.demo.demo.repository.ProjectRepository;
 import com.demo.demo.security.services.ProjectServiceImpl;
@@ -50,6 +53,28 @@ public class ProjectController {
         return  ResponseEntity.ok ().body (projectService.search (request, updateProject));
     }
 
+<<<<<<< HEAD
+=======
+//    @PutMapping("/editProject/{id}")
+//    public ResponseEntity<?> editProject(@Valid @RequestBody UpdateProject updateProject, @PathVariable long id){
+//       Project project = projectService.findById (updateProject.getId ()).orElse(  null);
+//
+//        if( project == null){
+//            return new ResponseEntity<> (HttpStatus.NO_CONTENT);
+//        }else {
+//            project.setId (id);
+//            project.setUnit (updateProject.getUnit ());
+//            project.setTimeStart (updateProject.getTimeStart ());
+//            project.setTimeEnd (updateProject.getTimeEnd ());
+//            project.setDescription (updateProject.getDescription ());
+//            project.setName (updateProject.getName ());
+//            project.setStatus (updateProject.getStatus ());
+//            projectService.editProject (project);
+//            return new ResponseEntity<> (HttpStatus.OK);
+//        }
+//    }
+
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteProjectById(HttpServletRequest request,@PathVariable Long id){
 
@@ -62,6 +87,7 @@ public class ProjectController {
             return ResponseEntity.ok().body(responseData);
         }
         return ResponseEntity.notFound().build();
+<<<<<<< HEAD
     }
 
     @PostMapping("/addProjectToUser/{user_id}/{project_id}")
@@ -77,6 +103,16 @@ public class ProjectController {
     @GetMapping("/allUser")
     public ResponseEntity allUser(HttpServletRequest httpServletRequest){
         return ResponseEntity.ok (  ).body (projectService.findAllUser (httpServletRequest));
+=======
+//        Project project = this.projectService.findById (id).orElse (null);
+//        if(project.getId () != null){
+//            project.setDeleteFlag (true);
+//            this.projectService.editProject (project);
+//            return new ResponseEntity<> (HttpStatus.OK);
+//        }else {
+//            return new ResponseEntity(HttpStatus.NOT_FOUND);
+//        }
+>>>>>>> de475c2b74b9a33b9fa23fd4eac9c1511f8091c5
     }
 
 }
