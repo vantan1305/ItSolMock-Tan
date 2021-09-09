@@ -1,0 +1,100 @@
+<div>
+  <app-menu></app-menu>
+</div>
+
+<div class="card" style="width: 1535px;text-align: center;">
+  <h2 style="text-align: center;">Project List</h2>
+<div class="col-6 col-md-6" style="margin-left: 350px;">
+  <div class="search" >
+    <input
+      style="height: 40px; width: 250px"
+      type="text"
+      placeholder="Search"
+      [(ngModel)]="seachFrom.seach"
+    />
+    <button
+      class="fa fa-search"
+      style="height: 40px; width: 40px"
+      (click)="search()"
+    ></button>
+  </div>
+</div>
+<div style="width: 200px;">
+  <button type="submit" class="btn btn-success btn-block" (click)="addProject()">Add project</button>
+</div>
+<br>
+<table id="customers">
+  <tr>
+    <th>ID</th>
+    <th>
+      Name &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Unit
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Description
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Status
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th >Time Start
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Time End
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th value="Acction">Acction</th>
+  </tr>
+  <tr *ngFor="let project of updateProject| paginate: { itemsPerPage: 5, currentPage: p }">
+    <td>{{project?.id}}</td>
+    <td>{{project?.name}}</td>
+    <td>{{project?.unit}}</td>
+    <td>{{project?.description}}</td>
+    <td>{{project?.status}}</td>
+    <td>{{project?.timeStart}}</td>
+    <td>{{project?.timeEnd}}</td>
+    <td class="text-center">
+      <button class="btn btn-success" [routerLink]="['/managerProject/edit', project.id]"><i
+        class="fa fa-edit"></i></button>
+      <button class="btn btn-danger ml-2" data-toggle="modal" data-target="#exampleModal"
+              (click)="deleteId = project.id; deleteName = project.name"><i class="fa fa-trash"></i>
+      </button>
+    </td>
+  </tr>
+
+</table>
+
+<div class="col-md-12" style="padding-top: 20px;text-align: center;">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-delete-project [deleteId]="deleteId" [deleteName]="deleteName" (deleteComplete)="deleteSuccess()"></app-delete-project>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>

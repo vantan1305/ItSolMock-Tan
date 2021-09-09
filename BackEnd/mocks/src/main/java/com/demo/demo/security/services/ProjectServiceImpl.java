@@ -2,9 +2,13 @@ package com.demo.demo.security.services;
 
 import com.demo.demo.message.request.UpdateProject;
 import com.demo.demo.message.request.UpdateUser;
+import com.demo.demo.model.Department;
 import com.demo.demo.model.Project;
 import com.demo.demo.model.Users;
+import com.demo.demo.repository.DepartmentRepository;
+import com.demo.demo.repository.IProjectRepository;
 import com.demo.demo.repository.ProjectRepository;
+import com.demo.demo.repository.UserRepository;
 import com.demo.demo.security.services.iservice.ProjectService;
 import com.demo.demo.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -24,6 +29,18 @@ public class ProjectServiceImpl implements ProjectService {
     private ProjectRepository projectRepository;
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private IProjectRepository iProjectRepository;
+
+    @Override
+    public List<Project> findByDeleteFlag() {
+        return projectRepository.findByDeleteFlag (true);
+    }
 
     @Transactional
     public UpdateProject updateProject(HttpServletRequest request, UpdateProject updateProject){
@@ -32,6 +49,8 @@ public class ProjectServiceImpl implements ProjectService {
         if (updateProject != null){
             if(AppUtil.NVL(updateProject.getId())==0L){
                 project = AppUtil.mapperEntAndDto(updateProject, Project.class);
+//                project.setDepartment (departmentRepository.findById (updateProject.getDepartmentId ()).orElse (null));
+//                project.setUsers (userRepository.findById (updateProject.getUserId ()).orElse (null));
             }
             //  update
             else {
@@ -44,6 +63,8 @@ public class ProjectServiceImpl implements ProjectService {
                     project.setStatus (updateProject.getStatus ());
                     project.setTimeEnd (updateProject.getTimeEnd ());
                     project.setTimeStart (updateProject.getTimeStart ());
+//                    project.setDepartment (departmentRepository.findById (updateProject.getDepartmentId ()).orElse (null));
+//                    project.setUsers (userRepository.findById (updateProject.getUserId ()).orElse (null));
                 }
             }
             return  AppUtil.mapperEntAndDto(projectRepository.save(project), UpdateProject.class);
@@ -87,5 +108,67 @@ public class ProjectServiceImpl implements ProjectService {
             return true;
         }
         return false;
+    }
+//new
+    @Override
+    public Project addProjectToUser(long user_id, long project_id) {
+        Users users = userRepository.findById (user_id).get ();
+        Project project = projectRepository.findById (project_id).get ();
+        users.addProjectToUser (project);
+        return projectRepository.save (project);
+    }
+
+    @Override
+    public Project addProjectToDepartment(Project project, long id) {
+        Department department = departmentRepository.findById (id).get ();
+        project.setTimeStart (new Date());
+        department.addProjectToDepartment (project);
+        return projectRepository.save (project);
+    }
+
+    @Override
+    public List<Project> findProjectsForUser(long id) {
+        Users users = userRepository.findById (id).get ();
+        return users.getProjects ();
+    }
+
+    @Override
+    public List<Project> findProjects() {
+        return projectRepository.findAll ();
+    }
+
+
+
+    @Override
+    public void deleteProjectFromUser(long user_id, long project_id) {
+        Users users = userRepository.findById (user_id).get ();
+        Project project = projectRepository.findById (project_id).get ();
+        users.getProjects ().remove (project);
+    }
+
+    @Override
+    public List<UpdateUser> findAllUser(HttpServletRequest httpServletRequest) {
+        return userRepository.findAll ().stream ()
+                .map (obj -> AppUtil.mapperEntAndDto (obj, UpdateUser.class))
+                .collect (Collectors.toList ());
+    }
+
+    @Override
+    public UpdateProject isdeleteProject(long id) {
+//        UpdateProject dto = new UpdateProject ();
+        Project projectEntity;
+        if(AppUtil.NVL (id)==0L){
+           return null;
+                                }
+        else {
+            projectEntity = projectRepository.findById(id).orElse(null);
+            if (projectEntity != null){
+//                Project dataProject = AppUtil.mapperEntAndDto(dto,Project.class);
+                projectEntity.setDeleteFlag (false);
+//                projectEntity = dataProject;
+            }
+            return  AppUtil.mapperEntAndDto(projectRepository.save(projectEntity), UpdateProject.class);
+        }
+
     }
 }

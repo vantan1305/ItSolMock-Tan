@@ -1,0 +1,165 @@
+<div>
+  <app-menu></app-menu>
+</div>
+<h2 style="text-align: center">User List</h2>
+<!-- Searching -->
+<div class="col-6 col-md-6" style="margin-left: 100px;">
+  <div class="search" >
+    <input
+      style="height: 40px; width: 250px"
+      type="text"
+      placeholder="Tên đăng nhập"
+      [(ngModel)]="seachFrom.seach"
+    />
+    <button
+      class="fa fa-search"
+      style="height: 40px; width: 40px"
+      (click)="searchUserName()"
+    ></button>
+  </div>
+</div>
+<div class="col-6 col-md-6" style="margin-left: 600px; margin-top: -40px;">
+  <div class="search" >
+    <input
+      style="height: 40px; width: 250px"
+      type="text"
+      placeholder="Email"
+      [(ngModel)]="searchEmail.seach1"
+    />
+    <button
+      class="fa fa-search"
+      style="height: 40px; width: 40px;"
+      (click)="searchEnail()"
+    ></button>
+  </div>
+</div>
+<div class="col-6 col-md-6" style="margin-left: 1100px; margin-top: -40px;">
+  <div class="search" >
+    <input
+      style="height: 40px; width: 250px"
+      type="text"
+      placeholder="Chuyên ngành"
+      [(ngModel)]="searchSpecialized.seach2"
+    />
+    <button
+      class="fa fa-search"
+      style="height: 40px; width: 40px"
+      (click)="searchBySpecialized()"
+    ></button>
+  </div>
+</div>
+<div style="width: 200px;">
+  <button type="submit" class="btn btn-success btn-block" (click)="addUser()">
+    Add User
+  </button>
+</div>
+<br />
+<table id="customers">
+  <tr>
+    <th>ID</th>
+    <!-- <th>Role</th> -->
+    <th>
+      UserName &nbsp;
+      <mat-icon style="cursor: pointer" (click)="sortCode('down')">arrow_downward</mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Email
+      &nbsp;
+      <mat-icon style="cursor: pointer" (click)="sortCode('down')">arrow_downward</mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Staff Type
+      &nbsp;
+      <mat-icon style="cursor: pointer" (click)="sortCode('down')">arrow_downward</mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Education
+      &nbsp;
+      <mat-icon style="cursor: pointer" (click)="sortCode('down')">arrow_downward</mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>IdentityCard
+      &nbsp;
+      <mat-icon style="cursor: pointer" (click)="sortCode('down')">arrow_downward</mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Phone
+      &nbsp;
+      <mat-icon style="cursor: pointer" (click)="sortCode('down')">arrow_downward</mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Specialized
+      &nbsp;
+      <mat-icon style="cursor: pointer" (click)="sortCode('down')">arrow_downward</mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Dob
+      &nbsp;
+      <mat-icon style="cursor: pointer" (click)="sortCode('down')">arrow_downward</mat-icon>
+      <mat-icon style="cursor: pointer" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Avatar</th>
+    <th value="Acction">Acction</th>
+  </tr>
+  <tr
+    *ngFor="
+      let user of profileUser1 | paginate: { itemsPerPage: 9, currentPage: p }
+    "
+  >
+    <!-- <td>{{i + 1}}</td> -->
+    <td>{{ user?.id }}</td>
+    <!-- <td>{{user?.role}}</td> -->
+    <td>{{ user?.userName }}</td>
+    <td>{{ user?.email }}</td>
+    <td>{{ user?.staffType }}</td>
+    <td>{{ user?.education }}</td>
+    <td>{{ user?.identityCard }}</td>
+    <td>{{ user?.phone }}</td>
+    <td>{{ user?.specialized }}</td>
+    <td>{{ user?.dob }}</td>
+    <td align="center">
+      <img *ngIf="user?.avatar" src="{{ user?.avatar }}" height="50px;" />
+    </td>
+
+    <td class="text-center">
+      <button
+        class="btn btn-success"
+        [routerLink]="['/managerUser/edit', user.id]"
+      >
+        <i class="fa fa-edit"></i>
+      </button>
+      <button
+        class="btn btn-danger ml-2"
+        data-toggle="modal"
+        data-target="#exampleModal"
+        (click)="deleteId = user.id; deleteUserName = user.userName"
+      >
+        <i class="fa fa-trash"></i>
+      </button>
+    </td>
+  </tr>
+</table>
+<div class="col-md-12" style="padding-top: 20px; text-align: center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-delete-user
+          [deleteId]="deleteId"
+          [deleteUserName]="deleteUserName"
+          (deleteComplete)="deleteSuccess()"
+        ></app-delete-user>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <router-outlet></router-outlet> -->

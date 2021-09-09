@@ -5,6 +5,9 @@ import { OauthLoginService } from 'src/app/services/oauth-login.service';
 import { UserService } from 'src/app/services/user.service';
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { updateUser } from 'src/app/model/updateUser';
+import { SeachEmail } from 'src/app/model/searchEmail';
+import { SeachSpecialized } from 'src/app/model/searchSpecialized';
 
 @Component({
   selector: 'app-home',
@@ -21,11 +24,11 @@ export class HomeComponent implements OnInit {
   showAdminBoard =false;
   showManagerBoard = false;
   profileUser1:any[] =[];
-  dd:any;
-  mm:any;
-  yyyy:any;
   p = 1;
   seachFrom: SeachForm = new SeachForm();
+  searchEmail: SeachEmail = new SeachEmail();
+  searchSpecialized: SeachSpecialized = new SeachSpecialized();
+  user: updateUser = {} as updateUser;
 
   constructor(
     private userService: UserService,
@@ -38,32 +41,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.userService.getUserBoard()
       .subscribe((data) => {
-        console.log(data)// format dob ở đây
-
-        // this.dob = new Date().toLocaleString();
-        // this.dob = new Date();
-        // this.dd = this.dob.getDate();
-        // this.mm = this.dob.getMonth()+1;
-        // this.yyyy = this.dob.getFullYear();
-        // if(this.dd<10)
-        //   {
-        //    this.dd='0'+ this.dd;
-        // }
-        // if(this.mm<10)
-        //   {
-        //     this.mm='0'+ this.mm;
-        // }
-        // this.dob = this.dd+'/'+this.mm+'/'+this.yyyy;
+        console.log(data)
         if(this.invalidLogin){
           const user = this.oauthService.getUsers();
           this.roles = user.roles;
         }
         this.profileUser1 = data;
-
       }, error => console.log(error));
   }
 
-  public search(): void{
+  public searchUserName(): void{
     this.userService.searchDataUser(this.seachFrom).subscribe(
     data =>{
       this.profileUser1 =  data;
@@ -75,6 +62,34 @@ export class HomeComponent implements OnInit {
       alert('User Not Found');
       }
     );
+  }
+
+  searchEnail(){
+    this.userService.searchByEmail(this.searchEmail).subscribe(
+      data =>{
+        this.profileUser1 =  data;
+        if(data = ""){
+          alert('Not Found Email');
+        }
+      },error =>{
+        console.log(error);
+        alert('Email Not Found');
+        }
+      );
+  }
+
+  searchBySpecialized(){
+    this.userService.searchBySpecialized(this.searchSpecialized).subscribe(
+      data =>{
+        this.profileUser1 =  data;
+        if(data = ""){
+          alert('Not Found Specialized');
+        }
+      },error =>{
+        console.log(error);
+        alert('Specialized Not Found');
+        }
+      );
   }
 
   public sortCode(dir: any){

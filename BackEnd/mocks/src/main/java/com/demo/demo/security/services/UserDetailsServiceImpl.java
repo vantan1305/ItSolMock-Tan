@@ -2,7 +2,9 @@ package com.demo.demo.security.services;
 
 
 import com.demo.demo.message.request.UpdateUser;
+import com.demo.demo.model.Department;
 import com.demo.demo.model.Users;
+import com.demo.demo.repository.DepartmentRepository;
 import com.demo.demo.repository.UserRepository;
 import com.demo.demo.security.services.iservice.UsersService;
 import com.demo.demo.util.AppUtil;
@@ -12,6 +14,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -41,12 +44,13 @@ public class UserDetailsServiceImpl implements UserDetailsService, UsersService 
     ServletContext context;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     public List<Users> loadAll() {
         System.out.println ("Get all Users...");
         return userRepository.findAll (Sort.by ("userName").ascending ( ));
     }
-
 
     @Transactional
     public Iterable<Users> findAll() {
@@ -58,8 +62,6 @@ public class UserDetailsServiceImpl implements UserDetailsService, UsersService 
     public Optional<Users> findById(Long id) {
         return userRepository.findById (id);
     }
-
-
 
     @Transactional
     public Optional<Users> findByUsername(String userName) {
@@ -100,6 +102,8 @@ public class UserDetailsServiceImpl implements UserDetailsService, UsersService 
                     usersEntity.setSpecialized (users.getSpecialized ());
                     usersEntity.setStaffType (users.getStaffType ());
                     usersEntity.setIdentityCard (users.getIdentityCard ());
+                    usersEntity.setUnit (users.getUnit ());
+
                 }
             }
             return  AppUtil.mapperEntAndDto(userRepository.save(usersEntity), UpdateUser.class);
@@ -149,4 +153,55 @@ public class UserDetailsServiceImpl implements UserDetailsService, UsersService 
                     return updateUser1;
                 }).collect (Collectors.toList ( ));
     }
+
+
+    @Override
+    public List<UpdateUser> searchSpecialized(HttpServletRequest request, UpdateUser updateUser) {
+        return  userRepository.searchSpecialized (updateUser.getSpecialized ().toLowerCase ())
+                .stream ()
+                .map (obj ->{
+                    UpdateUser updateUser1 = AppUtil.mapperEntAndDto (obj, UpdateUser.class);
+                    return updateUser1;
+                }).collect (Collectors.toList ());
+    }
+
+    @Override
+    public List<UpdateUser> searchEmail(HttpServletRequest request, UpdateUser updateUser){
+        return  userRepository.searchEmail (updateUser.getEmail ().toLowerCase ())
+                .stream ()
+                .map (obj ->{
+                    UpdateUser updateUser1 = AppUtil.mapperEntAndDto (obj, UpdateUser.class);
+                    return updateUser1;
+                }).collect (Collectors.toList ());
+    }
+
+    @Override
+    public Users addUserToDepartment(Users users, Long id) {
+        Department department = departmentRepository.findById (id).get ();
+        department.addUserToDepartment (users);
+        return userRepository.save (users);
+    }
+
+    @Override
+    public UpdateUser isDeleteUser(long id) {
+
+        Users users;
+        if(AppUtil.NVL (id) == 0L){
+            return null;
+        }else {
+            users = userRepository.findById (id).orElse (null);
+            if (users != null) {
+                users.setDeleteUser (false);
+            }
+            return AppUtil.mapperEntAndDto (userRepository.save (users), UpdateUser.class);
+        }
+    }
+
+
+    @Override
+    public List<Users> findByDeleteUser() {
+        return userRepository.findDeleteUser (true);
+    }
+
+
 }

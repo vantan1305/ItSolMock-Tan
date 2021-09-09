@@ -1,0 +1,56 @@
+<div>
+  <app-menu></app-menu>
+</div>
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Department: {{department.code}}</mat-card-title>
+    <mat-card-subtitle>Location: {{department.location}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p style="background: #f5f6fa; padding: 15px;border-radius: 6px; color: rgba(0,0,0,.54);">
+      {{department.description}}
+    </p>
+    <hr>
+    <mat-list>
+      <div mat-subheader>Projects :</div>
+      <mat-list-item *ngFor="let pro of department.projects">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <div mat-line>{{pro.name}}</div>
+        <div mat-line> {{pro.timeStart | date}} </div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+    <mat-list>
+      <div mat-subheader>Users :</div>
+      <mat-list-item *ngFor="let user of department.users">
+        <mat-icon mat-list-icon>folder</mat-icon>
+        <div mat-line>{{user.lastName}}</div>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <div>
+      <div class="modal-body">
+        <div class="col-6">
+          <label>User</label>
+          <select class="form-control" name="user" [(ngModel)]="userSelect">
+            <option *ngFor="let u of users" [value]="u.id">{{u.lastName}}</option>
+          </select>
+        </div>
+      </div>
+      <button mat-button color="primary" (click)="addUser(department.id)">Add user</button>
+    </div>
+
+
+
+    <button mat-button color="primary" (click)="addProject(department.id)">Add project</button>
+    <button mat-button color="accent" (click)="editDepartment(department.id)">Update department</button>
+    <button mat-button color="warn" (click)="deleteDepartment(department.id)">Delete department</button>
+    <button mat-button disabled>{{department.createAt|date}}</button>
+  </mat-card-actions>
+</mat-card>
+
+
+

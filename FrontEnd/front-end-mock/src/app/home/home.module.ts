@@ -22,7 +22,20 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { AdminProjectComponent } from './admin-project/admin-project.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { DeleteProjectComponent } from './delete-project/delete-project.component';
-
+import { ProjectListComponent } from './project-list/project-list.component';
+import { AddDepartmentComponent } from './add-department/add-department.component';
+import { MatDialogModule, MatProgressBarModule, MatRadioModule, MAT_DIALOG_DATA } from '@angular/material';
+import { AddProjectToDepartmentComponent } from './add-project-to-department/add-project-to-department.component';
+import { DisplayDepartmentComponent } from './display-department/display-department.component';
+import { DisplayProjectComponent } from './display-project/display-project.component';
+import { ListDepartmentComponent } from './list-department/list-department.component';
+import { EditDepartmentComponent } from './edit-department/edit-department.component';
+import { DeleteDepartmentComponent } from './delete-department/delete-department.component';
+import { ManagerUserComponent } from './manager-user/manager-user.component';
+import { DeleteUserComponent } from './delete-user/delete-user.component';
+import {MatSelectModule} from '@angular/material/select';
+import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
+import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
 @NgModule({
   declarations: [
     ProfileComponent,
@@ -30,10 +43,21 @@ import { DeleteProjectComponent } from './delete-project/delete-project.componen
     SubjectListComponent,
     SettingprofileComponent,
     PleaseLeaveComponent,
-    PleaseLeaveComponent,
     AdminProjectComponent,
     EditProjectComponent,
     DeleteProjectComponent,
+    ProjectListComponent,
+    AddDepartmentComponent,
+    AddProjectToDepartmentComponent,
+    DisplayDepartmentComponent,
+    DisplayProjectComponent,
+    ListDepartmentComponent,
+    EditDepartmentComponent,
+    DeleteDepartmentComponent,
+    ManagerUserComponent,
+    DeleteUserComponent,
+    AdminEditUserComponent,
+    AdminAddUserComponent,
 
   ],
   imports: [
@@ -52,7 +76,10 @@ import { DeleteProjectComponent } from './delete-project/delete-project.componen
     MatListModule,
     MatButtonModule,
     NgxPaginationModule,
-
+    MatProgressBarModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers:[
     UserService

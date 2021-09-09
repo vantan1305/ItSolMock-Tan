@@ -1,5 +1,7 @@
 package com.demo.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,21 +36,52 @@ public class Project {
     @Column(name = "timeend", nullable = true)
     private Date timeEnd;
 
+    @Enumerated(EnumType.STRING)
+    private Process process;
+
+    @Column(columnDefinition = "int default 1")
     private Boolean deleteFlag;
 
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
-    private Collection<ProjectUser> projectUserList;
+    @ManyToOne
+    @JsonBackReference(value = "users")
+    private Users users;
 
-    public Project(Long id, String unit, String name, String description, String status, Date timeStart, Date timeEnd, Boolean deleteFlag) {
-        this.id = id;
+    @ManyToOne
+    @JsonBackReference(value = "department")
+    private Department department;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "project")
+    private List<Issue> issueList;
+
+    public Project(String unit, String name, String description, String status, Date timeStart, Date timeEnd, Process process, Boolean deleteFlag, Users users, Department department, List<Issue> issueList) {
         this.unit = unit;
         this.name = name;
         this.description = description;
         this.status = status;
         this.timeStart = timeStart;
         this.timeEnd = timeEnd;
+        this.process = process;
         this.deleteFlag = deleteFlag;
+        this.users = users;
+        this.department = department;
+        this.issueList = issueList;
+    }
+
+    public Process getProcess() {
+        return process;
+    }
+
+    public void setProcess(Process process) {
+        this.process = process;
+    }
+
+    public List<Issue> getIssueList() {
+        return issueList;
+    }
+
+    public void setIssueList(List<Issue> issueList) {
+        this.issueList = issueList;
     }
 
     public Boolean getDeleteFlag() {
@@ -70,12 +103,20 @@ public class Project {
         this.unit = unit;
     }
 
-    public Collection<ProjectUser> getProjectUserList() {
-        return projectUserList;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setProjectUserList(Collection<ProjectUser> projectUserList) {
-        this.projectUserList = projectUserList;
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Long getId() {
@@ -126,4 +167,11 @@ public class Project {
         this.timeEnd = timeEnd;
     }
 
+    public void addIssueToProject(Issue issue){
+        if (getIssueList () == null){
+            this.issueList = new ArrayList<> (  );
+        }
+        getIssueList ().add (issue);
+        issue.setProject (this);
+    }
 }

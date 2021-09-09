@@ -1,6 +1,7 @@
 package com.demo.demo.controller;
 
 import com.demo.demo.message.request.UpdateProject;
+import com.demo.demo.message.response.DeleteReponse;
 import com.demo.demo.model.Project;
 import com.demo.demo.repository.ProjectRepository;
 import com.demo.demo.security.services.ProjectServiceImpl;
@@ -29,13 +30,18 @@ public class ProjectController {
         return ResponseEntity.ok().body(projectService.updateProject (request, updateProject));
     }
 
+    @PostMapping("/isdelete/{id}")
+    public ResponseEntity deleteProject(HttpServletRequest request, @PathVariable Long id){
+        return ResponseEntity.ok().body(projectService.isdeleteProject (id));
+    }
+
     @GetMapping("/all")
     public ResponseEntity findAll(){
-        return ResponseEntity.ok().body(projectService.findAll ());
+        return ResponseEntity.ok().body(projectService.findByDeleteFlag ());
     }
 
     @GetMapping("/getId/{id}")
-    public ResponseEntity getUserById(@PathVariable Long id){
+    public ResponseEntity getProjectById(@PathVariable Long id){
         return  ResponseEntity.ok ( ).body (projectService.findById (id));
     }
 
@@ -43,25 +49,6 @@ public class ProjectController {
     public ResponseEntity search(HttpServletRequest request, UpdateProject updateProject){
         return  ResponseEntity.ok ().body (projectService.search (request, updateProject));
     }
-
-//    @PutMapping("/editProject/{id}")
-//    public ResponseEntity<?> editProject(@Valid @RequestBody UpdateProject updateProject, @PathVariable long id){
-//       Project project = projectService.findById (updateProject.getId ()).orElse(  null);
-//
-//        if( project == null){
-//            return new ResponseEntity<> (HttpStatus.NO_CONTENT);
-//        }else {
-//            project.setId (id);
-//            project.setUnit (updateProject.getUnit ());
-//            project.setTimeStart (updateProject.getTimeStart ());
-//            project.setTimeEnd (updateProject.getTimeEnd ());
-//            project.setDescription (updateProject.getDescription ());
-//            project.setName (updateProject.getName ());
-//            project.setStatus (updateProject.getStatus ());
-//            projectService.editProject (project);
-//            return new ResponseEntity<> (HttpStatus.OK);
-//        }
-//    }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity deleteProjectById(HttpServletRequest request,@PathVariable Long id){
@@ -75,14 +62,21 @@ public class ProjectController {
             return ResponseEntity.ok().body(responseData);
         }
         return ResponseEntity.notFound().build();
-//        Project project = this.projectService.findById (id).orElse (null);
-//        if(project.getId () != null){
-//            project.setDeleteFlag (true);
-//            this.projectService.editProject (project);
-//            return new ResponseEntity<> (HttpStatus.OK);
-//        }else {
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        }
+    }
+
+    @PostMapping("/addProjectToUser/{user_id}/{project_id}")
+    Project addProjectToUser(@PathVariable long user_id, @PathVariable long project_id) {
+        return projectService.addProjectToUser(user_id, project_id);
+    }
+
+    @PostMapping("/addProjectToDepartment/{id}")
+    Project addProjectToDepartment(@RequestBody Project project, @PathVariable long id) {
+        return projectService.addProjectToDepartment(project, id);
+    }
+
+    @GetMapping("/allUser")
+    public ResponseEntity allUser(HttpServletRequest httpServletRequest){
+        return ResponseEntity.ok (  ).body (projectService.findAllUser (httpServletRequest));
     }
 
 }

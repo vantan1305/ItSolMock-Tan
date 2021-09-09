@@ -1,5 +1,6 @@
 package com.demo.demo.repository;
 
+import com.demo.demo.message.request.UpdateProject;
 import com.demo.demo.model.Project;
 import com.demo.demo.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -18,5 +19,12 @@ import java.util.List;
 public interface ProjectRepository extends JpaRepository<Project, Long> {
     @Query("select p from Project p where lower(p.name) like concat('%', :name, '%')")
     List<Project>search (String name);
+
+    @Query("select p from Project  p where p.deleteFlag = :isdelete")
+    List<Project> findByDeleteFlag(Boolean isdelete);
+
+    @Modifying
+    @Query(value = "update Project set deleteFlag = 0 where id =:id", nativeQuery = true)
+    UpdateProject isDeleteById(long id);
 
 }

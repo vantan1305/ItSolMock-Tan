@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   // khai bao role
   roles: string[] = [];
   id;
+  department;
 
   constructor(private router:Router,
               private fb: FormBuilder,
@@ -77,6 +78,7 @@ export class LoginComponent implements OnInit {
         this.invalidLogin = false;
         this.roles = this.oauthService.getUsers().roles;
         this.id = this.oauthService.getUsers().id;
+        // this.department = this.oauthService.getUsers().department;
         this.saveCredentials();
         this.router.navigate(['home'])
       },

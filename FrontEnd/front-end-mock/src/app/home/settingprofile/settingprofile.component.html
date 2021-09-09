@@ -95,6 +95,14 @@
           <option value="Official">Official</option>
         </select>
       </div>
+      <div class="form-group">
+        <label for="unit">Unit</label>
+        <select id="unit" class="form-control" placeholder="Unit" required [(ngModel)]="users.unit" name="unit">
+          <option value="Collaborators">Admin</option>
+          <option value="Intership">Manager</option>
+          <option value="Probation">Pm</option>
+        </select>
+      </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <button type="submit" class="btn btn-success btn-block float-right" (click)="updateProfile()">Submit</button>

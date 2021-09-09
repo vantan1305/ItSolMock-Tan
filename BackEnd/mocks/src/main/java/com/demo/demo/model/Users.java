@@ -1,14 +1,13 @@
 package com.demo.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -58,7 +57,7 @@ public class Users {
     private String homeTown;
 
     @Column(nullable = true)
-    private String education; //học vấn: 1-DH, 2-CD, 3: Khác
+    private String education;
 
     @Column(nullable = true)
     private String school;
@@ -69,15 +68,31 @@ public class Users {
     @Column(nullable = false)
     private Boolean emailVerified = false;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
+    @JsonFormat(pattern="yyyy-MM-dd")
     @Column(name = "dob", nullable = true)
     private Date dob;
+
+    @Temporal(TemporalType.DATE)
+    @Column(name = "date_of_joining")
+    private Date dateOfJoining;
 
     @Column(name = "sex", nullable = true)
     private String sex;
 
     @Column(name = "day_off_last_year")
     private Integer dayOffLastYear;
+
+    @Column(name = "unit")
+    private String unit;
+
+    @ManyToOne
+    @JsonBackReference("department")
+    private Department department;
+
+    @Column(name = "ANNIVERSARY_DAY")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date anniversaryDate;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_role",
@@ -88,8 +103,15 @@ public class Users {
     @OneToMany(mappedBy = "users")
     private Set<Timelog> timelogs;
 
-    @OneToMany(mappedBy = "users")
-    private Collection<ProjectUser> projectUsersList;
+    @Column(columnDefinition = "int default 1")
+    private Boolean deleteUser;
+
+//    @JsonProperty(access = Access.WRITE_ONLY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "project_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "project_id"))
+    private List<Project> projects;
 
     public Users() {
     }
@@ -98,6 +120,46 @@ public class Users {
         this.userName = userName;
         this.email = email;
         this.password = password;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public Date getAnniversaryDate() {
+        return anniversaryDate;
+    }
+
+    public void setAnniversaryDate(Date anniversaryDate) {
+        this.anniversaryDate = anniversaryDate;
+    }
+
+    public Boolean getDeleteUser() {
+        return deleteUser;
+    }
+
+    public void setDeleteUser(Boolean deleteUser) {
+        this.deleteUser = deleteUser;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Date getDateOfJoining() {
+        return dateOfJoining;
+    }
+
+    public void setDateOfJoining(Date dateOfJoining) {
+        this.dateOfJoining = dateOfJoining;
     }
 
     public Integer getDayOffLastYear() {
@@ -278,11 +340,21 @@ public class Users {
         this.timelogs = timelogs;
     }
 
-    public Collection<ProjectUser> getProjectUsersList() {
-        return projectUsersList;
+    public List<Project> getProjects() {
+        return projects;
     }
 
-    public void setProjectUsersList(Collection<ProjectUser> projectUsersList) {
-        this.projectUsersList = projectUsersList;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
+
+    public void addProjectToUser(Project project) {
+        if (getProjects () == null) {
+            this.projects = new ArrayList<> ();
+        }
+        if (!getProjects ().contains(project)) {
+            getProjects ().add(project);
+        }
+    }
+
 }

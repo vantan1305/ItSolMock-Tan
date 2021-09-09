@@ -24,7 +24,7 @@
         <span>Last Name : {{profileUser.lastName}}</span>
       </div>
       <div>
-        <span>DOB : {{this.dob}}</span>
+        <span>DOB : {{profileUser.dob}}</span>
       </div>
       <div>
         <span>Staff Type : {{profileUser.staffType}}</span>
@@ -50,6 +50,9 @@
       <div>
         <span>Specialized : {{profileUser.specialized}}</span>
       </div>
+      <div>
+        <span>Department : {{profileUser.unit}}</span>
+      </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <button type="submit" class="btn btn-success btn-block float-right" (click)="editProfile()">Edit Profile</button>
@@ -58,4 +61,4 @@
     </div>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script> -->

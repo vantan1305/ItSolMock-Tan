@@ -4,18 +4,48 @@
 </div>
 <h2 style="text-align: center;">User List</h2>
 <!-- Searching -->
-<div class="col-6 col-md-6" style="margin-left: 1150px;">
+<div class="col-6 col-md-6" style="margin-left: 100px;">
   <div class="search" >
     <input
       style="height: 40px; width: 250px"
       type="text"
-      placeholder="Search"
+      placeholder="Tên đăng nhập"
       [(ngModel)]="seachFrom.seach"
     />
     <button
       class="fa fa-search"
-      style="height: 40px; width: 40px"
-      (click)="search()"
+      style="height: 41px; width: 40px"
+      (click)="searchUserName()"
+    ></button>
+  </div>
+</div>
+<div class="col-6 col-md-6" style="margin-left: 600px; margin-top: -40px;">
+  <div class="search" >
+    <input
+      style="height: 40px; width: 250px"
+      type="text"
+      placeholder="Email"
+      [(ngModel)]="searchEmail.seach1"
+    />
+    <button
+      class="fa fa-search"
+      style="height: 41px; width: 40px"
+      (click)="searchEnail()"
+    ></button>
+  </div>
+</div>
+<div class="col-6 col-md-6" style="margin-left: 1100px; margin-top: -40px;">
+  <div class="search" >
+    <input
+      style="height: 40px; width: 250px"
+      type="text"
+      placeholder="Chuyên ngành"
+      [(ngModel)]="searchSpecialized.seach2"
+    />
+    <button
+      class="fa fa-search"
+      style="height: 41px; width: 40px"
+      (click)="searchBySpecialized()"
     ></button>
   </div>
 </div>
@@ -24,19 +54,54 @@
 <table id="customers">
   <tr>
     <th>ID</th>
-    <th style="width: 200px;">
-      User Name &nbsp;
+    <th>
+      UserName &nbsp;
       <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
       &nbsp;
       <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
     </th>
-    <th style="width: 200px;">Email</th>
-    <th>Staff Type</th>
-    <th>Education</th>
-    <th>IdentityCard</th>
-    <th>Phone</th>
-    <th>Specialized</th>
-    <th>Dob</th>
+    <th style="width: 150px;">
+      Email &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Staff Type
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Education
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>IdentityCard
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Phone
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Specialized
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
+    <th>Dob
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('down')">arrow_downward</mat-icon>
+      &nbsp;
+      <mat-icon  style="cursor: pointer;" (click)="sortCode('up')">arrow_upward</mat-icon>
+    </th>
     <th>Avatar</th>
     <!-- <div *ngIf="showManagerBoard"></div> -->
     <!-- <th *ngIf="showManagerBoard" value="Acction">Acction</th> -->

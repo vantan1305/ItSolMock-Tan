@@ -42,7 +42,15 @@ export class ProjectServiceService {
   }
 
   public deleteProject(id:any):Observable<any>{
-    return this.http.delete(Constants.API_BASE_URL + '/project/delete/' + id, this.httpOptions);
+    return this.http.post(Constants.API_BASE_URL + '/project/isdelete/' + id, this.httpOptions);
+  }
+
+  public addProjectToDepartment(data:any, id: number): Observable<any>{
+    return this.http.post<any>(Constants.API_BASE_URL + '/project/addProjectToDepartment/' + id, data);
+  }
+
+  public getUser(): Observable<any>{
+    return this.http.get(Constants.API_BASE_URL + '/project/allUser');
   }
 
 }

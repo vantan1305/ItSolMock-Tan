@@ -66,8 +66,8 @@ export class OauthLoginService {
     else
       return true;
   }
-  removeToken() {
 
+  removeToken() {
     localStorage.removeItem(TOKEN)
   }
 

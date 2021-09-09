@@ -26,7 +26,24 @@ public class UpdateUser {
     private String userName;
     private Date dob;
     private String sex;
+    private Boolean deleteUser;
+    private String unit;
 
+    public Boolean getDeleteUser() {
+        return deleteUser;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public void setDeleteUser(Boolean deleteUser) {
+        this.deleteUser = deleteUser;
+    }
 
     public String getUserName() {
         return userName;

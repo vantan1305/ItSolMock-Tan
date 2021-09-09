@@ -64,6 +64,7 @@ export class SettingprofileComponent implements OnInit {
     formData.append('lastName', this.users.lastName);
     formData.append('middleName', this.users.middleName);
     formData.append('sex', this.users.sex);
+    formData.append('unit', this.users.unit);
     console.log(formData);
     if(this.id !== 1){
       formData.append('id', `${this.id}`);

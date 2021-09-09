@@ -7,6 +7,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
 
 import javax.swing.text.DateFormatter;
 import java.text.DateFormat;
@@ -18,6 +19,7 @@ import java.util.Date;
 public class EmailSenderService {
     @Autowired
     private JavaMailSender javaMailSender;
+
 
     private static String dateFormat="dd/MM/YYYY";
 
@@ -48,7 +50,6 @@ public class EmailSenderService {
     }
 
     public boolean isItBirthday(Users users) {
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern ("dd/MM/YYYY");
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
         Date today = new Date();
         Date birthDay = users.getDob ();
@@ -60,14 +61,19 @@ public class EmailSenderService {
     }
 
 
-    @Scheduled(cron = "0 00 9 * * ?")
-    public void sendMailHappyBirthDay(String userEmail){
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(userEmail);
-        mailMessage.setSubject("Account Activation!");
-        mailMessage.setText("A wish for you on your birthday, whatever you ask you may receive, " +
-                "whatever you seek you may find, whatever you wish may be fulfilled on your birthday. " +
-                "Happy birthday to you! ");
-        javaMailSender.send(mailMessage);
-    }
+//    @Scheduled(cron = "0 0 6 * * ?")
+//    public void sendMailHappyBirthDay(Users users,String userEmail){
+//        if (isItBirthday (users)){
+//
+//            SimpleMailMessage mailMessage = new SimpleMailMessage();
+//            mailMessage.setTo(userEmail);
+//            mailMessage.setSubject("Account Activation!");
+//            mailMessage.setText("A wish for you on your birthday, whatever you ask you may receive, " +
+//                    "whatever you seek you may find, whatever you wish may be fulfilled on your birthday. " +
+//                    "Happy birthday to you! ");
+//            javaMailSender.send(mailMessage);
+//        }
+//
+//    }
+
 }

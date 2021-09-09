@@ -19,6 +19,8 @@ export class AdminProjectComponent implements OnInit {
   p = 1;
   deleteId: number;
   deleteName: string;
+  public users:any;
+  userSelect:any;
 
   constructor(
     private http: HttpClient,
@@ -29,6 +31,7 @@ export class AdminProjectComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadUser();
     this.projectService.getAllProject()
       .subscribe(data => {
         console.log(data)
@@ -36,8 +39,17 @@ export class AdminProjectComponent implements OnInit {
       }, error => console.log(error));
   }
 
+  loadUser(){
+    this.projectService.getUser().subscribe(
+      data =>{
+        this.users= data;
+      }
+    )
+  }
+
   public updateNewProject(){
     const formData = new FormData;
+    // formData.append('user', this.userSelect);
     formData.append('unit', this.updateProject.unit);
     formData.append('name', this.updateProject.name);
     formData.append('description', this.updateProject.description);
@@ -50,7 +62,7 @@ export class AdminProjectComponent implements OnInit {
         console.log(data);
         this.updateProject = data;
         alert('ok');
-        this.router.navigate(['managerProject']);
+        this.router.navigate(['/managerProject/list']);
       }, (error: any) => {
         alert('Thất bại');
         console.log(error);

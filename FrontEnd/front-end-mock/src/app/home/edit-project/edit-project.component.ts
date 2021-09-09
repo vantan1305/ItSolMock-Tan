@@ -37,7 +37,7 @@ export class EditProjectComponent implements OnInit {
 }
 
  public editProject():void {
-   debugger
+  //  debugger
   const formData = new FormData();
   formData.append('unit', this.updateproject.unit);
   formData.append('name', this.updateproject.name);
@@ -52,7 +52,7 @@ export class EditProjectComponent implements OnInit {
   this.projectService.updateProject(formData).subscribe(data => {
     this.updateproject = data;
     alert('ok');
-    this.router.navigateByUrl('managerProject');
+    this.router.navigateByUrl('managerProject/list');
   }, (error: any) => {
     alert('Thất bại');
     console.log(error);

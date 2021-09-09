@@ -14,6 +14,18 @@ export class UserService {
   constructor(
     private http: HttpClient
   ) { }
+  loggedInStatus = false
+  setLoggedIn(value:boolean){
+    this.loggedInStatus = value
+  }
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    }),
+    'Access-Control-Allow-Origin': 'http://localhost:4200',
+    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS'
+  };
 
   private httpOptions1 = {
     headers : new HttpHeaders({
@@ -37,8 +49,14 @@ export class UserService {
      .pipe(catchError((err) => throwError(err)));;
   }
 
+  getUserIdAndShift(empid: string,shift: string) {
+    console.log("VENAM PLz"+empid);
+    console.log("from employee account service"+empid);
+    return this.http.get<updateUser>(Constants.API_BASE_URL + '/api/role/user/findByUserIdShift?id='+empid+'&shift='+shift);
+  }
+
   public getUser(id: number): Observable<any>{
-    return this.http.get(`http://localhost:8888/api/role/user/getId/${id}`);
+    return this.http.get(`http://localhost:8888/api/role/user/getId/` + id);
 
   }
 
@@ -50,6 +68,22 @@ export class UserService {
     const params = new HttpParams().set('userName', data.seach);
     return this.http.get(Constants.API_BASE_URL + '/api/role/user/search', {observe: 'body', params});
   }
+
+  public searchByEmail(data:any): Observable<any>{
+    const params = new HttpParams().set('email', data.seach1);
+    return this.http.get(Constants.API_BASE_URL + '/api/role/user/searchByEmail', {observe: 'body', params});
+  }
+
+  public searchBySpecialized(data:any): Observable<any>{
+    const params = new HttpParams().set('specialized', data.seach2);
+    return this.http.get(Constants.API_BASE_URL + '/api/role/user/searchBySpecialized', {observe: 'body', params});
+  }
+
+  public deleteUser(id:any):Observable<any>{
+    return this.http.post(Constants.API_BASE_URL + '/api/role/user/deleteUser/' + id, this.httpOptions);
+  }
+
+
 
 //   public uploadImage(file):Observable<any> {
 //     const formData = new FormData();

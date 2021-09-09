@@ -15,4 +15,11 @@ export class updateUser{
   lastName:any;
   sex:any;
   avatar:any;
+  department:any;
+  dateOfJoining:Number;
+  shift:string;
+  role;
+  userName;
+  unit;
+  password;
 }

@@ -1,0 +1,36 @@
+<div>
+  <app-menu></app-menu>
+</div>
+<div class="card" style="width: 500px;margin-left: 500px;">
+  <div class="card-body">
+    <div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="email" id="email" placeholder="Email" required [(ngModel)]="users.email" name="email">
+      </div>
+      <div class="form-group">
+        <label for="staffType">Staff Type</label>
+        <select id="staffType" class="form-control" placeholder="Staff Type" required [(ngModel)]="users.staffType" name="staffType">
+          <option value="Collaborators">Collaborators</option>
+          <option value="Intership">Intership</option>
+          <option value="Probation">Probation</option>
+          <option value="Official">Official</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="unit">Unit</label>
+        <select id="unit" class="form-control" placeholder="Unit" required [(ngModel)]="users.unit" name="unit">
+          <option value="Collaborators">Admin</option>
+          <option value="Intership">Manager</option>
+          <option value="Probation">Pm</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success btn-block float-right" (click)="updateProfile()">Submit</button>
+        </div>
+        <div><a routerLink="/managerUser" class="btn btn-dark" style="width: 200px;">Hủy</a></div>
+      </div>
+    </div>
+  </div>
+</div>

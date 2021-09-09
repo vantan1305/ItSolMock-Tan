@@ -1,9 +1,9 @@
 package com.demo.demo.message.request;
 
-import com.demo.demo.model.ProjectUser;
+import com.demo.demo.model.Department;
+import com.demo.demo.model.Issue;
 import com.demo.demo.model.Users;
 
-import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -17,10 +17,45 @@ public class UpdateProject {
     private Date timeEnd;
     private List<Users> usersList;
     private Boolean deleteFlag;
+    private Long departmentId;
+    private List<Issue> issueList;
+    private Department department;
+    private Long userId;
 
     public UpdateProject() {
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public List<Issue> getIssueList() {
+        return issueList;
+    }
+
+    public void setIssueList(List<Issue> issueList) {
+        this.issueList = issueList;
+    }
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
 
     public Boolean getDeleteFlag() {
         return deleteFlag;

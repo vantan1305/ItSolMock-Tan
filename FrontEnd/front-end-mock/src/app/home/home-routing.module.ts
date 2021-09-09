@@ -12,6 +12,18 @@ import { PmComponent } from '../shared/pm/pm.component';
 import { AdminProjectComponent } from './admin-project/admin-project.component';
 import { EditProjectComponent } from './edit-project/edit-project.component';
 import { DeleteProjectComponent } from './delete-project/delete-project.component';
+import { ProjectListComponent } from './project-list/project-list.component';
+import { AddDepartmentComponent } from './add-department/add-department.component';
+import { AddProjectToDepartmentComponent } from './add-project-to-department/add-project-to-department.component';
+import { DisplayDepartmentComponent } from './display-department/display-department.component';
+import { DisplayProjectComponent } from './display-project/display-project.component';
+import { ListDepartmentComponent } from './list-department/list-department.component';
+import { EditDepartmentComponent } from './edit-department/edit-department.component';
+import { DeleteDepartmentComponent } from './delete-department/delete-department.component';
+import { ManagerUserComponent } from './manager-user/manager-user.component';
+import { AdminEditUserComponent } from './admin-edit-user/admin-edit-user.component';
+import { AdminAddUserComponent } from './admin-add-user/admin-add-user.component';
+
 
 export const Home_Module_routes: Routes = [
 
@@ -19,12 +31,23 @@ export const Home_Module_routes: Routes = [
     { path: 'setting', component: SettingprofileComponent , canActivate: [RouteGuardService]}, //, canActivate: [RouteGuardService]
     { path: 'subjects', component: SubjectListComponent , canActivate: [RouteGuardService]},
     {path:'admin', component:AdminComponent,canActivate:[RouteGuardService]},
-    {path:'pleaseLeave', component:PleaseLeaveComponent,canActivate:[RouteGuardService]},
+
     {path:'manager', component:ManagerComponent,canActivate:[RouteGuardService]},
     {path:'pm', component:PmComponent,canActivate:[RouteGuardService]},
     {path:'managerProject', component:AdminProjectComponent,canActivate:[RouteGuardService]},
     {path:'managerProject/edit', children: [ {path: ':id', component: EditProjectComponent}],canActivate:[RouteGuardService]},
     {path:'managerProject/deleteProject', component:DeleteProjectComponent,canActivate:[RouteGuardService]},
+    {path:'managerProject/list', component:ProjectListComponent,canActivate:[RouteGuardService]},
+    {path:'listDepartment', component:ListDepartmentComponent,canActivate:[RouteGuardService]},
+    {path:'listProject', component:ProjectListComponent,canActivate:[RouteGuardService]},
+    {path:'addDepartment', component:AddDepartmentComponent,canActivate:[RouteGuardService]},
+    {path:'displayDipartment', children: [ {path: ':id', component: DisplayDepartmentComponent}],canActivate:[RouteGuardService]},
+    {path:'department/edit', children: [ {path: ':id', component: EditDepartmentComponent}],canActivate:[RouteGuardService]},
+    {path:'department/deleteDepartment', component:DeleteDepartmentComponent,canActivate:[RouteGuardService]},
+    {path:'managerUser', component:ManagerUserComponent,canActivate:[RouteGuardService]},
+    {path:'pleaseLeave', component:PleaseLeaveComponent,canActivate:[RouteGuardService]},
+    {path:'managerUser/edit', children: [ {path: ':id', component: AdminEditUserComponent}],canActivate:[RouteGuardService]},
+    {path:'adminAddUser', component:AdminAddUserComponent,canActivate:[RouteGuardService]},
 ]
 
 @NgModule({
